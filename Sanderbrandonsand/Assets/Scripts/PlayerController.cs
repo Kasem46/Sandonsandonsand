@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
         moveDirection = transform.TransformDirection(moveDirection);
 
-        
 
+        moveDirection = clampMovement(moveDirection);
 
         moveDirection *= speed;
         transform.Translate(moveDirection*Time.deltaTime);
@@ -37,26 +37,63 @@ public class PlayerController : MonoBehaviour
         float cos8 = Mathf.Cos(Mathf.PI / 8f);
         float sin8 = Mathf.Sin(Mathf.PI / 8f);
         float sin4 = Mathf.Sin(Mathf.PI / 4f);
+        //Zones are numbered from (0,-1) clockwise use this for future reference https://www.desmos.com/calculator/fmscfnkp8d
+
+        if (input.y == 0 && input.x == 0) {
+            return new Vector2(0f, 0f);
+        }
 
         //Zone 1
-        if ((input.x >= -1f && input.x <= -cos8) && (input.y >= 0f && input.y <= sin8)){
+        if (input.x <= -cos8 && (input.y >= -sin8 && input.y <= sin8)) {
+            Debug.Log("Left");
             return new Vector2(-1f, 0f);
         }
-        
+
         //Zone 2
         if ((input.x > -cos8 && input.x < -sin8) && (input.y > sin8 && input.y < cos8)) {
+            Debug.Log("Up Left");
             return new Vector2(-sin4, sin4);
         }
 
         //Zone 3
-        if ((input.x >= -sin8 && input.x <= 0f) && (input.y >= cos8 && input.y <= 0))
-        {
-            return new Vector2()
+        if ((input.x >= -sin8 && input.x <= sin8) && input.y >= cos8) {
+            Debug.Log("Up");
+            return new Vector2(0, 1f);
         }
 
         //Zone 4
-        //GAGRIEL FINISH AT HOME
-        //https://www.desmos.com/calculator/fmscfnkp8d
+        if ((input.x > sin8 && input.x < cos8) && (input.y < cos8 && input.y > sin8)) {
+            Debug.Log("Up Right");
+            return new Vector2(sin4, sin4);
+        }
+
+        //Zone 5
+        if (input.x >= cos8 && (input.y <= sin8 && input.y >= -sin8)) {
+            Debug.Log("Right");
+            return new Vector2(1f, 0);
+        }
+
+        //Zone 6
+        if ((input.x < cos8 && input.x > sin8) && (input.y > -cos8 && input.y < -sin8)) {
+            Debug.Log("Down Right");
+            return new Vector2(sin4, -sin4);
+        }
+
+        //Zone 7 
+        if ((input.x <= sin8 && input.x >= -sin8) && input.y <= -cos8) {
+            Debug.Log("Down");
+            return new Vector2(0, -1f);
+        }
+
+        //Zone 8
+        if ((input.x < -sin8 && input.x > -cos8) && (input.y > -cos8 && input.y < -sin8)) {
+            Debug.Log("Down Left");
+            return new Vector2(-sin4, -sin4);
+        }
+
+        //default return nothing
+        return new Vector2(0f, 0f);
+
     }
 
 
