@@ -24,9 +24,27 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
         moveDirection = transform.TransformDirection(moveDirection);
+
+        
+
+
         moveDirection *= speed;
         transform.Translate(moveDirection*Time.deltaTime);
     }
+
+    public Vector2 clampMovement(Vector2 input)
+    {
+        float cos8 = Mathf.Cos(Mathf.PI / 8f);
+        float sin8 = Mathf.Sin(Mathf.PI / 8f);
+        float cos4 = Mathf.Cos(Mathf.PI / 4f);
+        float sin4 = Mathf.Sin(Mathf.PI / 4f);
+
+        switch (input){
+            case ((input.x >= -1f && input.x <= -cos8) && (input.y >= 0f && input.y <= sin8)):
+                return new Vector2(-1f, 0f);
+        }
+    }
+
 
     public void setInputDirection(Vector2 inputDirection) { 
         this.inputDirection = inputDirection;
