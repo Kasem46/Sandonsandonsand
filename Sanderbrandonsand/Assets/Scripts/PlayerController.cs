@@ -36,14 +36,27 @@ public class PlayerController : MonoBehaviour
     {
         float cos8 = Mathf.Cos(Mathf.PI / 8f);
         float sin8 = Mathf.Sin(Mathf.PI / 8f);
-        float cos4 = Mathf.Cos(Mathf.PI / 4f);
         float sin4 = Mathf.Sin(Mathf.PI / 4f);
 
+        //Zone 1
         if ((input.x >= -1f && input.x <= -cos8) && (input.y >= 0f && input.y <= sin8)){
             return new Vector2(-1f, 0f);
         }
-        if () { 
         
+        //Zone 2
+        if ((input.x > -cos8 && input.x < -sin4) && (input.y > sin8 && input.y < sin4)) {
+            return new Vector2(-sin4, sin4);
+        }
+
+        //Zone 3
+        if ((input.x > -sin4 && input.x < -sin8) && (input.y > sin4 && input.y < cos8))
+        {
+            return new Vector2(-sin4, sin4);
+        }
+
+        if ((input.x >= 0f && input.x <= sin8) && (input.y >= 1f && input.y <= cos8))
+        {
+            return new Vector2()
         }
     }
 
