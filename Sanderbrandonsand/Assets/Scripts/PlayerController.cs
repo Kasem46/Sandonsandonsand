@@ -44,20 +44,19 @@ public class PlayerController : MonoBehaviour
         }
         
         //Zone 2
-        if ((input.x > -cos8 && input.x < -sin4) && (input.y > sin8 && input.y < sin4)) {
+        if ((input.x > -cos8 && input.x < -sin8) && (input.y > sin8 && input.y < cos8)) {
             return new Vector2(-sin4, sin4);
         }
 
         //Zone 3
-        if ((input.x > -sin4 && input.x < -sin8) && (input.y > sin4 && input.y < cos8))
-        {
-            return new Vector2(-sin4, sin4);
-        }
-
-        if ((input.x >= 0f && input.x <= sin8) && (input.y >= 1f && input.y <= cos8))
+        if ((input.x >= -sin8 && input.x <= 0f) && (input.y >= cos8 && input.y <= 0))
         {
             return new Vector2()
         }
+
+        //Zone 4
+        //GAGRIEL FINISH AT HOME
+        //https://www.desmos.com/calculator/fmscfnkp8d
     }
 
 
