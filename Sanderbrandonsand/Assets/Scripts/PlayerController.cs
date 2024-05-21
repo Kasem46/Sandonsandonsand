@@ -39,9 +39,11 @@ public class PlayerController : MonoBehaviour
         float cos4 = Mathf.Cos(Mathf.PI / 4f);
         float sin4 = Mathf.Sin(Mathf.PI / 4f);
 
-        switch (input){
-            case ((input.x >= -1f && input.x <= -cos8) && (input.y >= 0f && input.y <= sin8)):
-                return new Vector2(-1f, 0f);
+        if ((input.x >= -1f && input.x <= -cos8) && (input.y >= 0f && input.y <= sin8)){
+            return new Vector2(-1f, 0f);
+        }
+        if () { 
+        
         }
     }
 
