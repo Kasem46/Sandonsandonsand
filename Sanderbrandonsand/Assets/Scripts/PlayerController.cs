@@ -15,17 +15,17 @@ public class PlayerController : MonoBehaviour
    
     //the input direction gotten from the inputHandler
     private Vector2 inputDirection = Vector2.zero;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+
+    private Vector3 moveDirection = Vector3.zero;
 
     // Update is called once per frame
     void Update()
     {
-        
+        moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
+        moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection *= speed;
+        transform.Translate(moveDirection*Time.deltaTime);
     }
 
     public void setInputDirection(Vector2 inputDirection) { 
