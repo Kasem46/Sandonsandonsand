@@ -10,14 +10,20 @@ public class PlayerController : MonoBehaviour
 
     //this is some back end stuff that lets us have 2 players, it is basically just to keep track of which one is which
     [SerializeField]
-    private int playerIndex = 0; 
+    private int playerIndex = 0;
 
+    //our rigidbody2d
+    private Rigidbody2D rb;
    
     //the input direction gotten from the inputHandler
     private Vector2 inputDirection = Vector2.zero;
 
 
     private Vector3 moveDirection = Vector3.zero;
+
+    void Awake() { 
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,9 +32,10 @@ public class PlayerController : MonoBehaviour
         moveDirection = transform.TransformDirection(moveDirection);
 
         moveDirection = clampMovement(moveDirection);
-        moveDirection = movementInterpretation(moveDirection);
+        //moveDirection = movementInterpretation(moveDirection);
         moveDirection *= speed;
-        transform.Translate(moveDirection*Time.deltaTime);
+
+        rb.velocity = moveDirection;
     }
 
     public Vector2 clampMovement(Vector2 input)
@@ -101,35 +108,36 @@ public class PlayerController : MonoBehaviour
         float sin8 = Mathf.Sin(Mathf.PI / 8f);
         float sin4 = Mathf.Sin(Mathf.PI / 4f);
 
-        if (directionInput == (-1f, 0f))
+        if (directionInput == new Vector2(-1f, 0f))
         {
             Debug.Log("left");
             return new Vector2(-1f, 0f);
         }
-        if (directionInput == (-sin4, sin4))
+        if (directionInput == new Vector2(-sin4, sin4))
         {
             Debug.Log("up left");
             return new Vector2(-sin4, sin4);
         }
-        if (directionInput == (sin4, -sin4) || directionInput == (0f, -1f) || directionInput == (-sin4, -sin4))
+        if (directionInput == new Vector2(sin4, -sin4) || directionInput == new Vector2(0f, -1f) || directionInput == new Vector2(-sin4, -sin4))
         {
             Debug.Log("crouch");
             return new Vector2(0f, 0f);
         }
-        if (directionInput == (1f, 0f){
+        if (directionInput == new Vector2(1f, 0f)){
             Debug.Log("right");
             return new Vector2(1f, 0f);
         }
-        if(directionInput == (sin4, sin4))
+        if(directionInput == new Vector2(sin4, sin4))
         {
             Debug.Log("up right");
             return new Vector2(sin4, sin4);
         }
-        if(directionInput == (0f, 1f))
+        if(directionInput == new Vector2(0f, 1f))
         {
             Debug.Log("jump");
             return new Vector2(0, 1f);
         }
+        return new Vector2(0, 0);
     }
 
     public void setInputDirection(Vector2 inputDirection) { 
