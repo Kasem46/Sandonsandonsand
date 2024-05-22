@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         moveDirection = transform.TransformDirection(moveDirection);
 
         moveDirection = clampMovement(moveDirection);
-
+        moveDirection = movementInterpretation(moveDirection);
         moveDirection *= speed;
         transform.Translate(moveDirection*Time.deltaTime);
     }
@@ -95,6 +95,42 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public Vector2 movementInterpretation(Vector2 directionInput)
+    {
+        float cos8 = Mathf.Cos(Mathf.PI / 8f);
+        float sin8 = Mathf.Sin(Mathf.PI / 8f);
+        float sin4 = Mathf.Sin(Mathf.PI / 4f);
+
+        if (directionInput == (-1f, 0f))
+        {
+            Debug.Log("left");
+            return new Vector2(-1f, 0f);
+        }
+        if (directionInput == (-sin4, sin4))
+        {
+            Debug.Log("up left");
+            return new Vector2(-sin4, sin4);
+        }
+        if (directionInput == (sin4, -sin4) || directionInput == (0f, -1f) || directionInput == (-sin4, -sin4))
+        {
+            Debug.Log("crouch");
+            return new Vector2(0f, 0f);
+        }
+        if (directionInput == (1f, 0f){
+            Debug.Log("right");
+            return new Vector2(1f, 0f);
+        }
+        if(directionInput == (sin4, sin4))
+        {
+            Debug.Log("up right");
+            return new Vector2(sin4, sin4);
+        }
+        if(directionInput == (0f, 1f))
+        {
+            Debug.Log("jump");
+            return new Vector2(0, 1f);
+        }
+    }
 
     public void setInputDirection(Vector2 inputDirection) { 
         this.inputDirection = inputDirection;
