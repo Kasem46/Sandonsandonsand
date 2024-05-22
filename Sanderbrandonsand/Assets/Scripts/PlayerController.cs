@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
         moveDirection = transform.TransformDirection(moveDirection);
 
-
         moveDirection = clampMovement(moveDirection);
 
         moveDirection *= speed;
