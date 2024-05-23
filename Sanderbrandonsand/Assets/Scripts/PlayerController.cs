@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
 
+    //check if in the air
+    private bool inAir = false;
+
     void Awake() { 
         rb = GetComponent<Rigidbody2D>();
         otherPlayersTrans = otherPlayer.GetComponent<Transform>();
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
         moveDirection = transform.TransformDirection(moveDirection);
+
+        inAir = isInAir();
 
         moveDirection = clampMovement(moveDirection);
         moveDirection = movementInterpretation(moveDirection);
@@ -191,5 +196,13 @@ public class PlayerController : MonoBehaviour
 
     public int getPlayerIndex() {
         return playerIndex;
+    }
+
+    public bool isInAir() {
+        if (rb.IsTouchingLayers(7)) {
+            return true;
+        }
+        
+        return false;
     }
 }
