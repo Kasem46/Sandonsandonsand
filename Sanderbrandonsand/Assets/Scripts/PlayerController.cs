@@ -14,15 +14,25 @@ public class PlayerController : MonoBehaviour
 
     //our rigidbody2d
     private Rigidbody2D rb;
+
+    //player variables
+    [SerializeField]
+    private GameObject otherPlayer;
+
+    private Transform otherPlayersTrans;
    
     //the input direction gotten from the inputHandler
     private Vector2 inputDirection = Vector2.zero;
+
+    [SerializeField]
+    private int inputDirectionNum = 0;
 
 
     private Vector3 moveDirection = Vector3.zero;
 
     void Awake() { 
         rb = GetComponent<Rigidbody2D>();
+        otherPlayersTrans = otherPlayer.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -32,7 +42,8 @@ public class PlayerController : MonoBehaviour
         moveDirection = transform.TransformDirection(moveDirection);
 
         moveDirection = clampMovement(moveDirection);
-        //moveDirection = movementInterpretation(moveDirection);
+        moveDirection = movementInterpretation(moveDirection);
+        inputDirectionNum = checkCorrectSide(inputDirectionNum);
         moveDirection *= speed;
 
         rb.velocity = moveDirection;
@@ -51,55 +62,70 @@ public class PlayerController : MonoBehaviour
 
         //Zone 1
         if (input.x <= -cos8 && (input.y >= -sin8 && input.y <= sin8)) {
-            Debug.Log("Left");
             return new Vector2(-1f, 0f);
         }
 
         //Zone 2
         if ((input.x > -cos8 && input.x < -sin8) && (input.y > sin8 && input.y < cos8)) {
-            Debug.Log("Up Left");
             return new Vector2(-sin4, sin4);
         }
 
         //Zone 3
         if ((input.x >= -sin8 && input.x <= sin8) && input.y >= cos8) {
-            Debug.Log("Up");
             return new Vector2(0, 1f);
         }
 
         //Zone 4
         if ((input.x > sin8 && input.x < cos8) && (input.y < cos8 && input.y > sin8)) {
-            Debug.Log("Up Right");
             return new Vector2(sin4, sin4);
         }
 
         //Zone 5
         if (input.x >= cos8 && (input.y <= sin8 && input.y >= -sin8)) {
-            Debug.Log("Right");
             return new Vector2(1f, 0);
         }
 
         //Zone 6
         if ((input.x < cos8 && input.x > sin8) && (input.y > -cos8 && input.y < -sin8)) {
-            Debug.Log("Down Right");
             return new Vector2(sin4, -sin4);
         }
 
         //Zone 7 
         if ((input.x <= sin8 && input.x >= -sin8) && input.y <= -cos8) {
-            Debug.Log("Down");
             return new Vector2(0, -1f);
         }
 
         //Zone 8
         if ((input.x < -sin8 && input.x > -cos8) && (input.y > -cos8 && input.y < -sin8)) {
-            Debug.Log("Down Left");
             return new Vector2(-sin4, -sin4);
         }
 
         //default return nothing
         return new Vector2(0f, 0f);
 
+    }
+
+    public int checkCorrectSide(int input)
+    {
+        int[] unaltered = {1,2,3,4,5,6,7,8,9};
+        int[] altered = { 3, 2, 1, 6, 5, 4, 9, 8, 7 };
+        int temp = 4;
+        if (transform.position.x >= otherPlayersTrans.transform.position.x) 
+        { 
+            for(int i = 0; 0 < 9; i++)
+            {
+                if (unaltered[i] == inputDirectionNum)
+                {
+                    temp = i;
+                    break;
+                }
+            }
+            return altered[temp];
+        }
+        else
+        {
+            return input;
+        }
     }
 
     public Vector2 movementInterpretation(Vector2 directionInput)
@@ -110,33 +136,52 @@ public class PlayerController : MonoBehaviour
 
         if (directionInput == new Vector2(-1f, 0f))
         {
+            inputDirectionNum = 4;
             Debug.Log("left");
             return new Vector2(-1f, 0f);
         }
         if (directionInput == new Vector2(-sin4, sin4))
         {
+            inputDirectionNum = 7;
             Debug.Log("up left");
             return new Vector2(-sin4, sin4);
         }
-        if (directionInput == new Vector2(sin4, -sin4) || directionInput == new Vector2(0f, -1f) || directionInput == new Vector2(-sin4, -sin4))
+        if (directionInput == new Vector2(sin4, -sin4))
         {
+            inputDirectionNum = 3;
+            Debug.Log("crouch right");
+            return new Vector2(0f, 0f);
+        }
+        if(directionInput == new Vector2(0f, -1f))
+        {
+            inputDirectionNum = 2;
             Debug.Log("crouch");
             return new Vector2(0f, 0f);
         }
+        if(directionInput == new Vector2(-sin4, -sin4))
+        {
+            inputDirectionNum = 1;
+            Debug.Log("crouch wrong");
+            return new Vector2(0f, 0f);
+        }
         if (directionInput == new Vector2(1f, 0f)){
+            inputDirectionNum = 6;
             Debug.Log("right");
             return new Vector2(1f, 0f);
         }
         if(directionInput == new Vector2(sin4, sin4))
         {
+            inputDirectionNum = 9;
             Debug.Log("up right");
             return new Vector2(sin4, sin4);
         }
         if(directionInput == new Vector2(0f, 1f))
         {
+            inputDirectionNum = 8;
             Debug.Log("jump");
             return new Vector2(0, 1f);
         }
+        inputDirectionNum = 5;
         return new Vector2(0, 0);
     }
 
