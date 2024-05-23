@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] //this here just means we can see the next variable in the editor
     private float speed = 2f;
 
+    private float gravityAccel = 2f;
+    private Vector2 airDir = Vector2.zero;
+
     //this is some back end stuff that lets us have 2 players, it is basically just to keep track of which one is which
     [SerializeField]
     private int playerIndex = 0;
@@ -149,7 +152,7 @@ public class PlayerController : MonoBehaviour
         {
             inputDirectionNum = 7;
             Debug.Log("up left");
-            return new Vector2(-sin4, sin4);
+            return jump(7);
         }
         if (directionInput == new Vector2(sin4, -sin4))
         {
@@ -178,13 +181,13 @@ public class PlayerController : MonoBehaviour
         {
             inputDirectionNum = 9;
             Debug.Log("up right");
-            return new Vector2(sin4, sin4);
+            return jump(9);
         }
         if(directionInput == new Vector2(0f, 1f))
         {
             inputDirectionNum = 8;
             Debug.Log("jump");
-            return new Vector2(0, 1f);
+            return jump(8);
         }
         inputDirectionNum = 5;
         return new Vector2(0, 0);
@@ -204,5 +207,29 @@ public class PlayerController : MonoBehaviour
         }
         
         return false;
+    }
+
+    public Vector2 jump(int dir) {
+        float sin4 = Mathf.Sin(Mathf.PI / 4f);
+
+        if (inAir == false)
+        {
+            airDir.y -= gravityAccel*Time.deltaTime;
+        }
+        else {
+            if (dir == 7)
+            {
+                airDir = new Vector2(-sin4,sin4);
+            }
+            else if (dir == 8)
+            {
+                airDir = new Vector2(0, 1);
+            }
+            else if (dir == 9) {
+                airDir = new Vector2(sin4, sin4);
+            }
+        }
+
+        return airDir;
     }
 }
