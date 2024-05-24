@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     //this is the multiplier that allows speed to be controlled
     [SerializeField] //this here just means we can see the next variable in the editor
     private float speed = 2f;
-
-    private float gravityAccel = 2f;
+    [SerializeField]
+    private float jumpPower = 2f;
     private Vector2 airDir = Vector2.zero;
 
     //this is some back end stuff that lets us have 2 players, it is basically just to keep track of which one is which
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     //check if in the air
+    [SerializeField]
     private bool inAir = false;
 
     void Awake() { 
@@ -48,13 +49,26 @@ public class PlayerController : MonoBehaviour
         moveDirection = transform.TransformDirection(moveDirection);
 
         inAir = isInAir();
-
+        //clap analong movement to one of the directions
         moveDirection = clampMovement(moveDirection);
+        //classify that dirrection
         moveDirection = movementInterpretation(moveDirection);
+        //set up jump if are jumping
+        if (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9) {
+            moveDirection = jump(inputDirectionNum);
+        }
+        //dont get stuck on top of player
+        if (rb.IsTouchingLayers(LayerMask.GetMask("Player")) && inAir == true) {
+            rb.velocity = jump(checkCorrectSide(7)) * (1f / jumpPower);
+        }
+        //correct L/R dirrection for command input attacks
         inputDirectionNum = checkCorrectSide(inputDirectionNum);
+        //scale movement with speed
         moveDirection *= speed;
-
-        rb.velocity = moveDirection;
+        //move as inputed, unless in the air
+        if (inAir == false){
+            rb.velocity = moveDirection;
+        }
     }
 
     public Vector2 clampMovement(Vector2 input)
@@ -152,7 +166,7 @@ public class PlayerController : MonoBehaviour
         {
             inputDirectionNum = 7;
             Debug.Log("up left");
-            return jump(7);
+            return new Vector2(-sin4, sin4);
         }
         if (directionInput == new Vector2(sin4, -sin4))
         {
@@ -181,13 +195,13 @@ public class PlayerController : MonoBehaviour
         {
             inputDirectionNum = 9;
             Debug.Log("up right");
-            return jump(9);
+            return new Vector2(sin4, sin4);
         }
         if(directionInput == new Vector2(0f, 1f))
         {
             inputDirectionNum = 8;
             Debug.Log("jump");
-            return jump(8);
+            return new Vector2(0, 1f);
         }
         inputDirectionNum = 5;
         return new Vector2(0, 0);
@@ -202,34 +216,31 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool isInAir() {
-        if (rb.IsTouchingLayers(7)) {
-            return true;
+        if (rb.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+            return false;
         }
         
-        return false;
+        return true;
     }
 
     public Vector2 jump(int dir) {
         float sin4 = Mathf.Sin(Mathf.PI / 4f);
+        float sin8 = Mathf.Sin(Mathf.PI / 8f);
 
-        if (inAir == false)
+        airDir = new Vector2(0, 0);
+        if (dir == 7)
         {
-            airDir.y -= gravityAccel*Time.deltaTime;
+            airDir = new Vector2(-sin8,1f);
         }
-        else {
-            if (dir == 7)
-            {
-                airDir = new Vector2(-sin4,sin4);
-            }
-            else if (dir == 8)
-            {
-                airDir = new Vector2(0, 1);
-            }
-            else if (dir == 9) {
-                airDir = new Vector2(sin4, sin4);
-            }
+        else if (dir == 8)
+        {
+            airDir = new Vector2(0, 1f);
         }
+        else if (dir == 9) {
+            airDir = new Vector2(sin8, 1f);
+        }
+        
 
-        return airDir;
+        return airDir * jumpPower;
     }
 }
