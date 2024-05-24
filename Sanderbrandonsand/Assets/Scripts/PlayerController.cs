@@ -127,13 +127,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //checks to see what side the players are facing and what numbers will do each thing
     public int checkCorrectSide(int input)
     {
+        //first array default, numbers arranged in a 3x3 cube representing directions 4 being move left, 5 being idle six move right, 2 jump, 8 crouch ect
         int[] unaltered = {1,2,3,4,5,6,7,8,9};
+        //swaed the first and third collums of the array, these are inputs when the characters have switched sides 
         int[] altered = { 3, 2, 1, 6, 5, 4, 9, 8, 7 };
+
+        //default not moving value
         int temp = 4;
+
+        //checks if player's x position is greater than the other players x position
         if (transform.position.x >= otherPlayersTrans.transform.position.x) 
         { 
+            //traverse array and find what input needs to be swapped
             for(int i = 0; 0 < 9; i++)
             {
                 if (unaltered[i] == inputDirectionNum)
@@ -146,14 +154,14 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //if players are facing eachother in default position return default number corresponding to movement
             return input;
         }
     }
 
+    //interprets which way player is moving as in game direction and returns a vector in the direction of movement
     public Vector2 movementInterpretation(Vector2 directionInput)
     {
-        float cos8 = Mathf.Cos(Mathf.PI / 8f);
-        float sin8 = Mathf.Sin(Mathf.PI / 8f);
         float sin4 = Mathf.Sin(Mathf.PI / 4f);
 
         if (directionInput == new Vector2(-1f, 0f))
@@ -215,6 +223,7 @@ public class PlayerController : MonoBehaviour
         return playerIndex;
     }
 
+    //checks if player is in air
     public bool isInAir() {
         if (rb.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
             return false;
