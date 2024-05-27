@@ -27,4 +27,34 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(CallbackContext context) {
         playerController.setInputDirection(context.ReadValue<Vector2>());
     }
+
+    public void OnPunch(CallbackContext context) {
+        if (context.ReadValue<float>() == 1f) {
+            playerController.setAttack(4);
+        }
+    }
+
+    public void OnKick(CallbackContext context)
+    {
+        if (context.ReadValue<float>() == 1f)
+        {
+            playerController.setAttack(5);
+        }
+    }
+
+    public void OnSlash(CallbackContext context)
+    {
+        if (context.ReadValue<float>() == 1f)
+        {
+            playerController.setAttack(8);
+        }
+    }
+
+    public void OnFunny(CallbackContext context)
+    {
+        if (context.ReadValue<float>() == 1f)
+        {
+            playerController.setAttack(6);
+        }
+    }
 }

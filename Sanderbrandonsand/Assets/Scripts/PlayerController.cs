@@ -23,8 +23,12 @@ public class PlayerController : MonoBehaviour
     private GameObject otherPlayer;
 
     private Transform otherPlayersTrans;
-   
+
     //the input direction gotten from the inputHandler
+    //attack type: 0 - Nothing, 4 - Punching, 5 - Kicking, 6 - Funny, 8 - Slash.
+    [SerializeField]
+    private int attackInput = 0;
+
     private Vector2 inputDirection = Vector2.zero;
 
     [SerializeField]
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
         moveDirection = transform.TransformDirection(moveDirection);
 
@@ -69,6 +74,38 @@ public class PlayerController : MonoBehaviour
         if (inAir == false){
             rb.velocity = moveDirection;
         }
+
+        //VER IMPORTANT::::
+        //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
+        TestAttackInput();
+    }
+
+    public void TestAttackInput() {
+        if (this.attackInput == 0) {
+            Debug.Log("Not Attacking");
+            
+        }
+        if (this.attackInput == 4)
+        {
+            Debug.Log("Punch");
+            
+        }
+        if (this.attackInput == 5)
+        {
+            Debug.Log("Kick");
+           
+        }
+        if (this.attackInput == 6)
+        {
+            Debug.Log("Funny");
+            
+        }
+        if (this.attackInput == 8)
+        {
+            Debug.Log("Slash");
+            
+        }
+        
     }
 
     public Vector2 clampMovement(Vector2 input)
@@ -218,6 +255,18 @@ public class PlayerController : MonoBehaviour
     public void setInputDirection(Vector2 inputDirection) { 
         this.inputDirection = inputDirection;
     }
+
+    //set the attacking type 
+    public void setAttack(int attackType) {
+        if (attackType == 0 || attackType == 4 || attackType == 5 || attackType == 6 || attackType == 8)
+        {
+            this.attackInput = attackType;
+        }
+        else {
+            Debug.Log("Invalid Attack Input you goof");
+        }
+    }
+
 
     public int getPlayerIndex() {
         return playerIndex;
