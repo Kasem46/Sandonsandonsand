@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
         //dont get stuck on top of player
         if (rb.IsTouchingLayers(LayerMask.GetMask("Player")) && inAir == true) {
-            rb.velocity = jump(checkCorrectSide(7)) * (1f / jumpPower);
+            rb.velocity = jump(checkCorrectSide(7)) * (3f / jumpPower);
         }
         //correct L/R dirrection for command input attacks
         inputDirectionNum = checkCorrectSide(inputDirectionNum);
