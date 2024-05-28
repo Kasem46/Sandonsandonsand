@@ -1413,7 +1413,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.033643454
   m_TransitionOffset: 12.981404
-  m_ExitTime: 13.731391
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
