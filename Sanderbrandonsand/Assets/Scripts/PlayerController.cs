@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     //our rigidbody2d
     private Rigidbody2D rb;
 
+    //our animator
+    private Animator animator;
+
     //player variables
     [SerializeField]
     private GameObject otherPlayer;
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Awake() { 
         rb = GetComponent<Rigidbody2D>();
         otherPlayersTrans = otherPlayer.GetComponent<Transform>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -74,6 +78,10 @@ public class PlayerController : MonoBehaviour
         if (inAir == false){
             rb.velocity = moveDirection;
         }
+
+        animator.SetFloat("MoveInput",inputDirectionNum);
+        animator.SetBool("InAir", inAir);
+
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
