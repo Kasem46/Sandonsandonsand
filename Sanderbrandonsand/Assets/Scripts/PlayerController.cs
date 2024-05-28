@@ -66,10 +66,6 @@ public class PlayerController : MonoBehaviour
         if (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9) {
             moveDirection = jump(inputDirectionNum);
         }
-        //dont get stuck on top of player
-        if (rb.IsTouchingLayers(LayerMask.GetMask("Player")) && inAir == true) {
-            rb.velocity = jump(checkCorrectSide(7)) * (3f / jumpPower);
-        }
         //correct L/R dirrection for command input attacks
         inputDirectionNum = checkCorrectSide(inputDirectionNum);
         //scale movement with speed
