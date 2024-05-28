@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = moveDirection;
         }
 
-        animator.SetFloat("MoveInput",inputDirectionNum);
+        animator.SetInteger("MoveInput",inputDirectionNum);
         animator.SetBool("InAir", inAir);
 
 
@@ -195,11 +195,13 @@ public class PlayerController : MonoBehaviour
                     break;
                 }
             }
+            this.transform.localScale = new Vector3(-1,1,0);
             return altered[temp];
         }
         else
         {
             //if players are facing eachother in default position return default number corresponding to movement
+            this.transform.localScale = new Vector3(1, 1, 0);
             return input;
         }
     }
