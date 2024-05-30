@@ -29,7 +29,14 @@ public class HitboxManager : MonoBehaviour
         setValidHitboxes();
     }
 
-    private void setValidHitboxes() { 
-        
+    private void setValidHitboxes() {
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Idle") == true)
+        {
+            idleHitboxes.SetActive(true);
+        }
+        else {
+            idleHitboxes.SetActive(false);
+        }
     }
+
 }
