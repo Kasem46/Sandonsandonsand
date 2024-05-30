@@ -74,7 +74,7 @@ public class HitboxManager : MonoBehaviour
             forwardMoveHitboxes.SetActive(false);
         }
 
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base. Walking Backwards") == true)
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Walking Backwards") == true)
         {
             backwardMoveHitboxes.SetActive(true);
         }
