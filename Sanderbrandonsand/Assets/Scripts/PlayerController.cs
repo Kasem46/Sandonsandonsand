@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
         //move as inputed, unless in the air
         if (inAir == false){
             rb.velocity = moveDirection;
+            Attack();
         }
 
         animator.SetInteger("MoveInput",inputDirectionNum);
@@ -81,10 +82,14 @@ public class PlayerController : MonoBehaviour
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
-        TestAttackInput();
+        
     }
 
-    public void TestAttackInput() {
+    private void Punch() { 
+        
+    }
+
+    public void Attack() {
         if (this.attackInput == 0) {
             Debug.Log("Not Attacking");
             
@@ -92,7 +97,7 @@ public class PlayerController : MonoBehaviour
         if (this.attackInput == 4)
         {
             Debug.Log("Punch");
-            
+            Punch();
         }
         if (this.attackInput == 5)
         {
