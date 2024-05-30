@@ -37,6 +37,51 @@ public class HitboxManager : MonoBehaviour
         else {
             idleHitboxes.SetActive(false);
         }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Jumping") == true)
+        {
+            jumpingHitboxes.SetActive(true);
+        }
+        else
+        {
+            jumpingHitboxes.SetActive(false);
+        }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Falling") == true)
+        {
+            fallingHitboxes.SetActive(true);
+        }
+        else
+        {
+            fallingHitboxes.SetActive(false);
+        }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Crouching") == true)
+        {
+            crouchingHitboxes.SetActive(true);
+        }
+        else
+        {
+            crouchingHitboxes.SetActive(false);
+        }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Walking Forward") == true)
+        {
+            forwardMoveHitboxes.SetActive(true);
+        }
+        else
+        {
+            forwardMoveHitboxes.SetActive(false);
+        }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base. Walking Backwards") == true)
+        {
+            backwardMoveHitboxes.SetActive(true);
+        }
+        else
+        {
+            backwardMoveHitboxes.SetActive(false);
+        }
     }
 
 }
