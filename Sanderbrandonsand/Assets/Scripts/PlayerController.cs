@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     //check if in the air
     [SerializeField]
     private bool inAir = false;
+    [SerializeField]
     private bool isAttack = false;
 
     void Awake() { 
@@ -74,7 +75,10 @@ public class PlayerController : MonoBehaviour
         //move as inputed, unless in the air
         if (inAir == false)
         {
-            rb.velocity = moveDirection;
+            if (isAttack == false)
+            {
+                rb.velocity = moveDirection;
+            }
             Attack();
         }
         else {
@@ -84,7 +88,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("AttackInput", attackInput);
         animator.SetInteger("MoveInput",inputDirectionNum);
         animator.SetBool("InAir", inAir);
-
+        stopAttacking();
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
@@ -92,8 +96,15 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Punch() {
-        
+        isAttack = true;
 
+    }
+
+    private void stopAttacking() {
+        if (!(animator.GetCurrentAnimatorStateInfo(0).IsName("Base.Attacking.Punch")))
+        {
+            isAttack = false;
+        }
     }
 
     public void Attack() {
@@ -103,6 +114,7 @@ public class PlayerController : MonoBehaviour
         }
         if (this.attackInput == 4)
         {
+            
             Debug.Log("Punch");
             Punch();
         }
