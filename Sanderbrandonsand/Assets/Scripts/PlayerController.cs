@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     //check if in the air
     [SerializeField]
     private bool inAir = false;
+    private bool isAttack = false;
 
     void Awake() { 
         rb = GetComponent<Rigidbody2D>();
@@ -71,22 +72,28 @@ public class PlayerController : MonoBehaviour
         //scale movement with speed
         moveDirection *= speed;
         //move as inputed, unless in the air
-        if (inAir == false){
+        if (inAir == false)
+        {
             rb.velocity = moveDirection;
             Attack();
         }
-
+        else {
+            attackInput = 0;
+            inputDirectionNum = 5;
+        }
+        animator.SetInteger("AttackInput", attackInput);
         animator.SetInteger("MoveInput",inputDirectionNum);
         animator.SetBool("InAir", inAir);
 
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
-        
+        attackInput = 0;
     }
 
-    private void Punch() { 
+    private void Punch() {
         
+
     }
 
     public void Attack() {
