@@ -108,6 +108,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void Kick() {
+        isAttack = true;
+    }
+
     private void stopAttacking() {
         if (!(animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")))
         {
@@ -123,13 +127,13 @@ public class PlayerController : MonoBehaviour
         }
         if (this.attackInput == 4)
         {
-            
             Debug.Log("Punch");
             Punch();
         }
         if (this.attackInput == 5)
         {
             Debug.Log("Kick");
+            Kick();
            
         }
         if (this.attackInput == 6)
