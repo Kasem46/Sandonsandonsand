@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    
+
+
     // Update is called once per frame
     void Update()
     {
@@ -65,7 +68,7 @@ public class PlayerController : MonoBehaviour
         //classify that dirrection
         moveDirection = movementInterpretation(moveDirection);
         //set up jump if are jumping
-        if (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9) {
+        if ((isAttack == false)&&(inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
             moveDirection = jump(inputDirectionNum);
         }
         //correct L/R dirrection for command input attacks
@@ -78,8 +81,9 @@ public class PlayerController : MonoBehaviour
             if (isAttack == false)
             {
                 rb.velocity = moveDirection;
+                Attack();
             }
-            Attack();
+            
         }
         else {
             attackInput = 0;
@@ -88,11 +92,15 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("AttackInput", attackInput);
         animator.SetInteger("MoveInput",inputDirectionNum);
         animator.SetBool("InAir", inAir);
-        stopAttacking();
+        
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
-        attackInput = 0;
+        
+    }
+
+    void LateUpdate() {
+        stopAttacking();
     }
 
     private void Punch() {
@@ -101,9 +109,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void stopAttacking() {
-        if (!(animator.GetCurrentAnimatorStateInfo(0).IsName("Base.Attacking.Punch")))
+        if (!(animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")))
         {
             isAttack = false;
+            attackInput = 0;
         }
     }
 
