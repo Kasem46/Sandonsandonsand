@@ -46,19 +46,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isAttack = false;
 
-    void Awake() { 
+    void Awake() {
         rb = GetComponent<Rigidbody2D>();
         otherPlayersTrans = otherPlayer.GetComponent<Transform>();
         animator = GetComponent<Animator>();
     }
 
-    
+
 
 
     // Update is called once per frame
     void Update()
     {
-        
+
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
         moveDirection = transform.TransformDirection(moveDirection);
 
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         //classify that dirrection
         moveDirection = movementInterpretation(moveDirection);
         //set up jump if are jumping
-        if ((isAttack == false)&&(inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
+        if ((isAttack == false) && (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
             moveDirection = jump(inputDirectionNum);
         }
         //correct L/R dirrection for command input attacks
@@ -83,20 +83,20 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = moveDirection;
                 Attack();
             }
-            
+
         }
         else {
             attackInput = 0;
             inputDirectionNum = 5;
         }
         animator.SetInteger("AttackInput", attackInput);
-        animator.SetInteger("MoveInput",inputDirectionNum);
+        animator.SetInteger("MoveInput", inputDirectionNum);
         animator.SetBool("InAir", inAir);
-        
+
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
-        
+
     }
 
     void LateUpdate() {
@@ -109,6 +109,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Kick() {
+        isAttack = true;
+    }
+
+    private void Funny() {
+        isAttack = true;
+    }
+
+    private void Slash() {
         isAttack = true;
     }
 
@@ -139,12 +147,13 @@ public class PlayerController : MonoBehaviour
         if (this.attackInput == 6)
         {
             Debug.Log("Funny");
+            Funny();
             
         }
         if (this.attackInput == 8)
         {
             Debug.Log("Slash");
-            
+            Slash();
         }
         
     }
