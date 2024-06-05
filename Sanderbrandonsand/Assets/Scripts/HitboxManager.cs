@@ -9,18 +9,36 @@ public class HitboxManager : MonoBehaviour
     private Animator playerAnimator;
 
     //each of the hitbox sets
-    public GameObject idleHitboxes;
-    public GameObject jumpingHitboxes;
-    public GameObject fallingHitboxes;
-    public GameObject crouchingHitboxes;
-    public GameObject forwardMoveHitboxes;
-    public GameObject backwardMoveHitboxes;
+    public GameObject idleHitboxes; //0
+    public GameObject jumpingHitboxes; //1
+    public GameObject fallingHitboxes; //2
+    public GameObject crouchingHitboxes; //3
+    public GameObject moveHitboxes; //4
+    public GameObject punchHitboxes; //5
+    public GameObject kickHitboxes; //6
+    public GameObject funnyHitBoxes; //7
+    public GameObject slashHitBoxes; //8
+    private GameObject[][] frameData;
+    private GameObject[] hitboxRefrenceKeys;
 
     // Start is called before the first frame update
     void Awake()
     {
         player = this.transform.parent.gameObject;
         playerAnimator = player.GetComponent<Animator>();
+        hitboxRefrenceKeys = {idleHitboxes, jumpingHitboxes, fallingHitboxes,crouchingHitboxes, moveHitboxes, punchHitboxes, kickHitboxes, funnyHitBoxes, slashHitBoxes};
+        frameData = new GameObject[hitboxRefrenceKeys.Length][3];
+        for (int i = 0; i < frameData.Length; i++)
+        {
+            for (int j = 0; j < frameData[i].Length; j++)
+            {
+                if (j < hitboxRefrenceKeys[i].childCount())
+                {
+                    frameData[i][j] = hitboxRefrenceKeys[i].GetChild(j);
+                }
+                    
+            } 
+        }
     }
 
     // Update is called once per frame
@@ -29,59 +47,9 @@ public class HitboxManager : MonoBehaviour
         setValidHitboxes();
     }
 
-    private void setValidHitboxes() {
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Idle") == true)
-        {
-            idleHitboxes.SetActive(true);
-        }
-        else {
-            idleHitboxes.SetActive(false);
-        }
-
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Jumping") == true)
-        {
-            jumpingHitboxes.SetActive(true);
-        }
-        else
-        {
-            jumpingHitboxes.SetActive(false);
-        }
-
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Falling") == true)
-        {
-            fallingHitboxes.SetActive(true);
-        }
-        else
-        {
-            fallingHitboxes.SetActive(false);
-        }
-
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Crouching") == true)
-        {
-            crouchingHitboxes.SetActive(true);
-        }
-        else
-        {
-            crouchingHitboxes.SetActive(false);
-        }
-
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Walking Forward") == true)
-        {
-            forwardMoveHitboxes.SetActive(true);
-        }
-        else
-        {
-            forwardMoveHitboxes.SetActive(false);
-        }
-
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base.Walking Backwards") == true)
-        {
-            backwardMoveHitboxes.SetActive(true);
-        }
-        else
-        {
-            backwardMoveHitboxes.SetActive(false);
-        }
+    private void setValidHitboxes() 
+    {
+        
     }
 
 }
