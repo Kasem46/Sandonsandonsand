@@ -2595,7 +2595,7 @@ GameObject:
   - component: {fileID: 1035549386}
   - component: {fileID: 1035549387}
   m_Layer: 8
-  m_Name: Player 2 (trungle)
+  m_Name: Player 2 (trungle (Bill))
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
