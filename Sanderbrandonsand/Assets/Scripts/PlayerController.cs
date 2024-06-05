@@ -130,29 +130,24 @@ public class PlayerController : MonoBehaviour
 
     public void Attack() {
         if (this.attackInput == 0) {
-            Debug.Log("Not Attacking");
             
         }
         if (this.attackInput == 4)
         {
-            Debug.Log("Punch");
             Punch();
         }
         if (this.attackInput == 5)
         {
-            Debug.Log("Kick");
             Kick();
            
         }
         if (this.attackInput == 6)
         {
-            Debug.Log("Funny");
             Funny();
             
         }
         if (this.attackInput == 8)
         {
-            Debug.Log("Slash");
             Slash();
         }
         
@@ -256,48 +251,40 @@ public class PlayerController : MonoBehaviour
         if (directionInput == new Vector2(-1f, 0f))
         {
             inputDirectionNum = 4;
-            Debug.Log("left");
             return new Vector2(-1f, 0f);
         }
         if (directionInput == new Vector2(-sin4, sin4))
         {
             inputDirectionNum = 7;
-            Debug.Log("up left");
             return new Vector2(-sin4, sin4);
         }
         if (directionInput == new Vector2(sin4, -sin4))
         {
             inputDirectionNum = 3;
-            Debug.Log("crouch right");
             return new Vector2(0f, 0f);
         }
         if(directionInput == new Vector2(0f, -1f))
         {
             inputDirectionNum = 2;
-            Debug.Log("crouch");
             return new Vector2(0f, 0f);
         }
         if(directionInput == new Vector2(-sin4, -sin4))
         {
             inputDirectionNum = 1;
-            Debug.Log("crouch wrong");
             return new Vector2(0f, 0f);
         }
         if (directionInput == new Vector2(1f, 0f)){
             inputDirectionNum = 6;
-            Debug.Log("right");
             return new Vector2(1f, 0f);
         }
         if(directionInput == new Vector2(sin4, sin4))
         {
             inputDirectionNum = 9;
-            Debug.Log("up right");
             return new Vector2(sin4, sin4);
         }
         if(directionInput == new Vector2(0f, 1f))
         {
             inputDirectionNum = 8;
-            Debug.Log("jump");
             return new Vector2(0, 1f);
         }
         inputDirectionNum = 5;
