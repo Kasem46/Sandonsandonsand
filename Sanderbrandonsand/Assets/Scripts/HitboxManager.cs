@@ -55,7 +55,7 @@ public class HitboxManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        setValidHitboxes();
+        
     }
 
     private void disableAll()
