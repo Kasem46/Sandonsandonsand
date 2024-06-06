@@ -2728,7 +2728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1011005037
 Transform:
   m_ObjectHideFlags: 0
@@ -2820,7 +2820,7 @@ GameObject:
   - component: {fileID: 1035549386}
   - component: {fileID: 1035549387}
   m_Layer: 8
-  m_Name: Player 2 (trungle (not Bill))
+  m_Name: Player 2 (trungle)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
