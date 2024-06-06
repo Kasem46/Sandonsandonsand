@@ -18,14 +18,16 @@ public class HitboxManager : MonoBehaviour
     public GameObject kickHitboxes; //6
     public GameObject funnyHitboxes; //7
     public GameObject slashHitboxes; //8
+
+    [SerializeField]
     private GameObject[,] frameData;
+    [SerializeField]
     private GameObject[] hitboxRefrenceKeys;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        player = this.transform.parent.gameObject;
-        playerAnimator = player.GetComponent<Animator>();
+        playerAnimator = this.GetComponent<Animator>();
 
         hitboxRefrenceKeys = new GameObject[9];
         hitboxRefrenceKeys[0] = idleHitboxes;
@@ -50,6 +52,8 @@ public class HitboxManager : MonoBehaviour
                     
             } 
         }
+
+        disableAll();
     }
 
     // Update is called once per frame
