@@ -14,8 +14,8 @@ TagManager:
   - Wall
   - Ground
   - Player
-  - 
-  - 
+  - Hitbox
+  - Hurtbox
   - 
   - 
   - 
