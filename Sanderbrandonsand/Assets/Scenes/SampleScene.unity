@@ -900,7 +900,7 @@ Transform:
   - {fileID: 1797929941}
   - {fileID: 456073702}
   m_Father: {fileID: 920713846}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228408230
 GameObject:
@@ -2412,59 +2412,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8305593, y: 2.5727339}
   m_EdgeRadius: 0
---- !u!1 &907415820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 907415821}
-  - component: {fileID: 907415822}
-  m_Layer: 0
-  m_Name: HitboxManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &907415821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907415820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 920713846}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &907415822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907415820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2a26daf4658ee41a8753422e57d70f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleHitboxes: {fileID: 928836484}
-  jumpingHitboxes: {fileID: 1222882182}
-  fallingHitboxes: {fileID: 368478050}
-  crouchingHitboxes: {fileID: 44809128}
-  moveHitboxes: {fileID: 0}
-  punchHitboxes: {fileID: 0}
-  kickHitboxes: {fileID: 0}
-  funnyHitboxes: {fileID: 0}
-  slashHitboxes: {fileID: 0}
 --- !u!1 &908492757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,6 +2492,7 @@ GameObject:
   - component: {fileID: 920713849}
   - component: {fileID: 920713850}
   - component: {fileID: 920713851}
+  - component: {fileID: 920713852}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -2616,7 +2564,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 907415821}
   - {fileID: 217277963}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -2708,6 +2655,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &920713852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920713844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2a26daf4658ee41a8753422e57d70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleHitboxes: {fileID: 928836484}
+  jumpingHitboxes: {fileID: 1222882182}
+  fallingHitboxes: {fileID: 368478050}
+  crouchingHitboxes: {fileID: 44809128}
+  moveHitboxes: {fileID: 908492757}
+  punchHitboxes: {fileID: 1393941678}
+  kickHitboxes: {fileID: 1045223722}
+  funnyHitboxes: {fileID: 456073701}
+  slashHitboxes: {fileID: 1797929940}
 --- !u!1 &928836484
 GameObject:
   m_ObjectHideFlags: 0
