@@ -55,12 +55,106 @@ public class HitboxManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        setValidHitboxes();
+        
     }
 
-    private void setValidHitboxes() 
+    private void disableAll()
     {
-        
+        for(int i = 0; i < frameData.GetLength(0); i++)
+        {
+            for (int j = 0; j < frameData.GetLength(1); j++)
+            {
+                if (frameData[i,j] != null)
+                {
+                    frameData[i, j].SetActive(false);
+                }
+            }
+            
+        }
+    }
+
+    private void enableIdle()
+    {
+        disableAll();
+        frameData[0,0].SetActive(true);
+    }
+
+    private void enableJump()
+    {
+        disableAll();
+        frameData[1, 0].SetActive(true);
+    }
+
+    private void enableFalling()
+    {
+        disableAll();
+        frameData[2, 0].SetActive(true);
+    }
+
+    private void enableCrouch()
+    {
+        disableAll();
+        frameData[3, 0].SetActive(true);
+    }
+
+    private void enableMove()
+    {
+        disableAll();
+        frameData[4, 0].SetActive(true);
+    }
+
+    private void enablePunch1()
+    {
+        disableAll();
+        frameData[5, 0].SetActive(true);
+    }
+
+    private void enablePunch2()
+    {
+        disableAll();
+        frameData[5, 1].SetActive(true);
+    }
+
+    private void enablePunch3()
+    {
+        disableAll();
+        frameData[5, 2].SetActive(true);
+    }
+
+    private void enableKick1()
+    {
+        disableAll();
+        frameData[6, 0].SetActive(true);
+    }
+
+    private void enableKick2()
+    {
+        disableAll();
+        frameData[6, 1].SetActive(true);
+    }
+
+    private void enableFunny1()
+    {
+        disableAll();
+        frameData[7, 0].SetActive(true);
+    }
+
+    private void enableFunny2()
+    {
+        disableAll();
+        frameData[7, 1].SetActive(true);
+    }
+
+    private void enableSlash1()
+    {
+        disableAll();
+        frameData[8, 0].SetActive(true);
+    }
+
+    private void enableSlash2()
+    {
+        disableAll();
+        frameData[8, 1].SetActive(true);
     }
 
 }
