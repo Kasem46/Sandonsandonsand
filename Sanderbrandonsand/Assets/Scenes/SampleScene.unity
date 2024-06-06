@@ -2460,8 +2460,11 @@ MonoBehaviour:
   jumpingHitboxes: {fileID: 1222882182}
   fallingHitboxes: {fileID: 368478050}
   crouchingHitboxes: {fileID: 44809128}
-  forwardMoveHitboxes: {fileID: 908492757}
-  backwardMoveHitboxes: {fileID: 0}
+  moveHitboxes: {fileID: 0}
+  punchHitboxes: {fileID: 0}
+  kickHitboxes: {fileID: 0}
+  funnyHitboxes: {fileID: 0}
+  slashHitboxes: {fileID: 0}
 --- !u!1 &908492757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,8 +3616,11 @@ MonoBehaviour:
   jumpingHitboxes: {fileID: 0}
   fallingHitboxes: {fileID: 0}
   crouchingHitboxes: {fileID: 0}
-  forwardMoveHitboxes: {fileID: 0}
-  backwardMoveHitboxes: {fileID: 0}
+  moveHitboxes: {fileID: 0}
+  punchHitboxes: {fileID: 0}
+  kickHitboxes: {fileID: 0}
+  funnyHitboxes: {fileID: 0}
+  slashHitboxes: {fileID: 0}
 --- !u!1 &1363458867
 GameObject:
   m_ObjectHideFlags: 0
@@ -4376,7 +4382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1715610686
 SpriteRenderer:
   m_ObjectHideFlags: 0
