@@ -115,6 +115,18 @@ public class PlayerController : MonoBehaviour
         return isAttack;
     }
 
+    public void attemptHit()
+    {
+        if (isBlocking == true)
+        {
+            //no hit lol idiot get got u fool
+        }
+        else
+        {
+           //owwie zowie
+        }
+    }
+
     private void Punch() {
         isAttack = true;
 

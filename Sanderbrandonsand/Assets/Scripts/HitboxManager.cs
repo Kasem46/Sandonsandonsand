@@ -83,6 +83,7 @@ public class HitboxManager : MonoBehaviour
                 
                 if (collision.otherCollider.gameObject.layer == 9) {
                     Debug.Log("Hit other player");
+                    this.gameObject.GetComponent<PlayerController>().attemptHit();
                 }
                 if (collision.otherCollider.gameObject.layer == 10)
                 {
