@@ -7,6 +7,7 @@ public class HitboxManager : MonoBehaviour
     //the player and its important things
     private GameObject player;
     private Animator playerAnimator;
+    private PlayerController hitter;
 
     //each of the hitbox sets
     public GameObject idleHitboxes; //0
@@ -27,6 +28,7 @@ public class HitboxManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hitter = this.GetComponent<PlayerController>();
         playerAnimator = this.GetComponent<Animator>();
 
         hitboxRefrenceKeys = new GameObject[9];
@@ -83,7 +85,7 @@ public class HitboxManager : MonoBehaviour
                 
                 if (collision.otherCollider.gameObject.layer == 9) {
                     Debug.Log("Hit other player");
-                    this.gameObject.GetComponent<PlayerController>().attemptHit();
+                    hitter.attemptHit();
                 }
                 if (collision.otherCollider.gameObject.layer == 10)
                 {
