@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("AttackInput", attackInput);
         animator.SetInteger("MoveInput", inputDirectionNum);
         animator.SetBool("InAir", inAir);
-
+        animator.SetBool("OpponentAttacking", otherPlayer.getIsAttack);
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
@@ -101,6 +101,10 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate() {
         stopAttacking();
+    }
+
+    public bool getIsAttack() {
+        return isAttack;
     }
 
     private void Punch() {
