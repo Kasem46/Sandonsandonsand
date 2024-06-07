@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private GameObject otherPlayer;
 
     private Transform otherPlayersTrans;
+    private PlayerController otherPlayerController;
+
 
     //the input direction gotten from the inputHandler
     //attack type: 0 - Nothing, 4 - Punching, 5 - Kicking, 6 - Funny, 8 - Slash.
@@ -45,10 +47,13 @@ public class PlayerController : MonoBehaviour
     private bool inAir = false;
     [SerializeField]
     private bool isAttack = false;
-
+    [SerializeField]
+    private bool isBlocking = false;
+    
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         otherPlayersTrans = otherPlayer.GetComponent<Transform>();
+        otherPlayerController = otherPlayer.GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
     }
 
@@ -58,6 +63,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("block")) { 
+            isBlocking = true;
+        }
 
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
         moveDirection = transform.TransformDirection(moveDirection);
@@ -68,7 +76,7 @@ public class PlayerController : MonoBehaviour
         //classify that dirrection
         moveDirection = movementInterpretation(moveDirection);
         //set up jump if are jumping
-        if ((isAttack == false) && (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
+        if ((isBlocking = false) &&(isAttack == false) && (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
             moveDirection = jump(inputDirectionNum);
         }
         //correct L/R dirrection for command input attacks
@@ -76,7 +84,7 @@ public class PlayerController : MonoBehaviour
         //scale movement with speed
         moveDirection *= speed;
         //move as inputed, unless in the air
-        if (inAir == false)
+        if ((inAir == false) && (isBlocking == false))
         {
             if (isAttack == false)
             {
@@ -92,7 +100,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("AttackInput", attackInput);
         animator.SetInteger("MoveInput", inputDirectionNum);
         animator.SetBool("InAir", inAir);
-        animator.SetBool("OpponentAttacking", otherPlayer.getIsAttack);
+        animator.SetBool("OpponentAttacking", otherPlayerController.getIsAttack());
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
