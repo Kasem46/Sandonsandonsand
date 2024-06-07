@@ -77,6 +77,21 @@ public class HitboxManager : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.name != this.gameObject.name) {
+            if (collision.collider.gameObject.layer == 10) {
+                Debug.Log("Hurtbox Collision");
+                if (collision.otherCollider.gameObject.layer == 9) {
+                    Debug.Log("Hit other player");
+                }
+                if (collision.otherCollider.gameObject.layer == 10)
+                {
+                    Debug.Log("Clinked with other player");
+                }
+            }
+        }
+    }
+
     private void enableIdle()
     {
         disableAll();
