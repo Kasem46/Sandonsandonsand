@@ -63,8 +63,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("block")) { 
+        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("block"))
+        {
             isBlocking = true;
+        }
+        else {
+            isBlocking = false;
         }
 
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
@@ -84,9 +88,9 @@ public class PlayerController : MonoBehaviour
         //scale movement with speed
         moveDirection *= speed;
         //move as inputed, unless in the air
-        if ((inAir == false) && (isBlocking == false))
+        if ((inAir == false) )
         {
-            if (isAttack == false)
+            if (isAttack == false && (isBlocking == false))
             {
                 rb.velocity = moveDirection;
                 Attack();
