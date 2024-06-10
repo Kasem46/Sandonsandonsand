@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         //classify that dirrection
         moveDirection = movementInterpretation(moveDirection);
         //set up jump if are jumping
-        if ((isBlocking = false) &&(isAttack == false) && (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
+        if ((isBlocking == false) &&(isAttack == false) && (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
             moveDirection = jump(inputDirectionNum);
         }
         //correct L/R dirrection for command input attacks
