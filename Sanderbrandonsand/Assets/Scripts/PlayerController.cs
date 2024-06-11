@@ -49,7 +49,13 @@ public class PlayerController : MonoBehaviour
     private bool isAttack = false;
     [SerializeField]
     private bool isBlocking = false;
-    
+
+    //health
+    private int health = 100;
+
+    //getting hit (idiot)
+    private bool getHit = false;
+
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         otherPlayersTrans = otherPlayer.GetComponent<Transform>();
@@ -121,14 +127,22 @@ public class PlayerController : MonoBehaviour
 
     public void attemptHit()
     {
-        if (isBlocking == true)
+        if (isBlocking == true || getHit == true)
         {
             //no hit lol idiot get got u fool
         }
         else
         {
-           //owwie zowie
+            //owwie zowie
+            getHit = true;
+            health -= 5;
+            Debug.Log(health);
         }
+    }
+
+    private void stopGettingHit()
+    {
+        getHit = false;
     }
 
     private void Punch() {
