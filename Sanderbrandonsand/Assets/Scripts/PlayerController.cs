@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private int health = 100;
 
     //getting hit (idiot)
+    [SerializeField]
     private bool getHit = false;
 
     void Awake() {
@@ -111,6 +112,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("MoveInput", inputDirectionNum);
         animator.SetBool("InAir", inAir);
         animator.SetBool("OpponentAttacking", otherPlayerController.getIsAttack());
+        animator.SetBool("gettingHit", getHit);
 
         //VER IMPORTANT::::
         //AFTER ATTACK IS DONE, SET ATTACK INPUT BACK TO 0
@@ -140,10 +142,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void stopGettingHit()
-    {
-        getHit = false;
-    }
+    
 
     private void Punch() {
         isAttack = true;
@@ -167,6 +166,10 @@ public class PlayerController : MonoBehaviour
         {
             isAttack = false;
             attackInput = 0;
+        }
+
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("ow")) { 
+            getHit = false;
         }
     }
 
