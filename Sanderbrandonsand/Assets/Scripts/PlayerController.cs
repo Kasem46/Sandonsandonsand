@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private int getHealth()
+    public int getHealth()
     {
         return health;
     }
