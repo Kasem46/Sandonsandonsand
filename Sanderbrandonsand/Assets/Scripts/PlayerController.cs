@@ -142,6 +142,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private int getHealth()
+    {
+        return health;
+    }
     
 
     private void Punch() {
