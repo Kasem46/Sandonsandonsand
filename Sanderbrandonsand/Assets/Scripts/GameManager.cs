@@ -17,12 +17,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1.getHealth() >= 0)
+        if (player1.getHealth() <= 0)
         {
             Debug.Log("player 2 wins");
         }
 
-        if (player2.getHealth() >= 0)
+        if (player2.getHealth() <= 0)
         {
             Debug.Log("player 1 wins");
         }
