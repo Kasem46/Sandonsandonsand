@@ -1700,6 +1700,8 @@ MonoBehaviour:
   inputDirectionNum: 0
   inAir: 0
   isAttack: 0
+  isBlocking: 0
+  getHit: 0
 --- !u!212 &383574707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4085,6 +4087,8 @@ MonoBehaviour:
   inputDirectionNum: 0
   inAir: 0
   isAttack: 0
+  isBlocking: 0
+  getHit: 0
 --- !u!61 &920713849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4102,7 +4106,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.19, y: 4.6}
+    oldSize: {x: 5.65, y: 8.42}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4412,6 +4416,52 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2908616, y: 0.9839258}
   m_EdgeRadius: 0
+--- !u!1 &972653698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 972653700}
+  - component: {fileID: 972653699}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &972653699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972653698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c9a1efceb807448a4d454eb02fc9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 920713848}
+  player2: {fileID: 383574706}
+--- !u!4 &972653700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972653698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6506374, y: 0.0061995313, z: -0.014884398}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977489957
 GameObject:
   m_ObjectHideFlags: 0
