@@ -24,6 +24,8 @@ AnimationClip:
     - time: 0.25
       value: {fileID: 21300000, guid: 9cee763f76a3366499d8f68be6febf0b, type: 3}
     - time: 0.5833333
+      value: {fileID: 21300000, guid: c5c16298794818545ad4a65a35ec7671, type: 3}
+    - time: 0.9166667
       value: {fileID: 21300000, guid: 9cee763f76a3366499d8f68be6febf0b, type: 3}
     attribute: m_Sprite
     path: 
@@ -46,13 +48,14 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: 21300000, guid: 52a3847400836f443a5098e87db5062c, type: 3}
     - {fileID: 21300000, guid: 9cee763f76a3366499d8f68be6febf0b, type: 3}
+    - {fileID: 21300000, guid: c5c16298794818545ad4a65a35ec7671, type: 3}
     - {fileID: 21300000, guid: 9cee763f76a3366499d8f68be6febf0b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.59999996
+    m_StopTime: 0.93333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,6 +90,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5833333
+    functionName: enableDrugDoing
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.9166667
     functionName: enableSlash1
     data: 
     objectReferenceParameter: {fileID: 0}

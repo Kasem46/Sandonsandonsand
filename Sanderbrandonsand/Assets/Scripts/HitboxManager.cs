@@ -179,4 +179,8 @@ public class HitboxManager : MonoBehaviour
         frameData[8, 1].SetActive(true);
     }
 
+    private void enableDrugDoing() {
+        disableAll();
+        frameData[8,2].SetActive(true);
+    }
 }
