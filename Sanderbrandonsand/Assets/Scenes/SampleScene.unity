@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 104596109}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Overhead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1225,7 +1225,7 @@ GameObject:
   - component: {fileID: 293493434}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 319280047}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Overhead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1733,7 +1733,8 @@ MonoBehaviour:
   inputDirectionNum: 0
   inAir: 0
   isAttack: 0
-  isBlocking: 0
+  isBlockingHigh: 0
+  isBlockingLow: 0
   getHit: 0
 --- !u!212 &383574707
 SpriteRenderer:
@@ -2674,7 +2675,7 @@ GameObject:
   - component: {fileID: 583357518}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3360,7 +3361,7 @@ GameObject:
   - component: {fileID: 720432587}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Sweep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3418,7 +3419,7 @@ GameObject:
   - component: {fileID: 734348879}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3476,7 +3477,7 @@ GameObject:
   - component: {fileID: 744360695}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Sweep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4354,7 +4355,8 @@ MonoBehaviour:
   inputDirectionNum: 0
   inAir: 0
   isAttack: 0
-  isBlocking: 0
+  isBlockingHigh: 0
+  isBlockingLow: 0
   getHit: 0
 --- !u!61 &920713849
 BoxCollider2D:
@@ -4637,7 +4639,7 @@ GameObject:
   - component: {fileID: 968633778}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6418,7 +6420,7 @@ GameObject:
   - component: {fileID: 1528840967}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6720,7 +6722,7 @@ GameObject:
   - component: {fileID: 1591474969}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Overhead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6778,7 +6780,7 @@ GameObject:
   - component: {fileID: 1660477062}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7676,7 +7678,7 @@ GameObject:
   - component: {fileID: 1773686110}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8285,7 +8287,7 @@ GameObject:
   - component: {fileID: 1947701577}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8441,7 +8443,7 @@ GameObject:
   - component: {fileID: 1984965323}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Sweep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8615,7 +8617,7 @@ GameObject:
   - component: {fileID: 2042609130}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Sweep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9073,7 +9075,7 @@ GameObject:
   - component: {fileID: 2146115985}
   m_Layer: 10
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: Overhead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

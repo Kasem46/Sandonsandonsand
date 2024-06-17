@@ -48,7 +48,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isAttack = false;
     [SerializeField]
-    private bool isBlocking = false;
+    private bool isBlockingHigh = false;
+    [SerializeField]
+    private bool isBlockingLow = false;
 
     //health
     private int health = 100;
@@ -70,12 +72,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("block"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("highBlock"))
         {
-            isBlocking = true;
+            isBlockingHigh = true;
+            isBlockingLow = false;
         }
-        else {
-            isBlocking = false;
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsTag("lowBlock")) {
+            isBlockingLow = true;
+            isBlockingHigh = false;
+        }
+        else
+        {
+            isBlockingLow = false;
+            isBlockingHigh = false;
         }
 
         moveDirection = new Vector3(inputDirection.x, inputDirection.y, 0f);
@@ -87,7 +96,7 @@ public class PlayerController : MonoBehaviour
         //classify that dirrection
         moveDirection = movementInterpretation(moveDirection);
         //set up jump if are jumping
-        if ((isBlocking == false) &&(isAttack == false) && (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
+        if ((isBlockingHigh == false && isBlockingLow == false) &&(isAttack == false) && (inputDirectionNum == 7 || inputDirectionNum == 8 || inputDirectionNum == 9)) {
             moveDirection = jump(inputDirectionNum);
         }
         //correct L/R dirrection for command input attacks
@@ -97,7 +106,7 @@ public class PlayerController : MonoBehaviour
         //move as inputed, unless in the air
         if ((inAir == false) )
         {
-            if (isAttack == false && (isBlocking == false))
+            if (isAttack == false && (isBlockingLow == false && isBlockingHigh == false))
             {
                 rb.velocity = moveDirection;
                 Attack();
@@ -127,14 +136,27 @@ public class PlayerController : MonoBehaviour
         return isAttack;
     }
 
-    public void attemptHit()
+    public void attemptHit(string attackType)
     {
-        if (isBlocking == true || getHit == true)
+        if (getHit == true)
         {
             //no hit lol idiot get got u fool
         }
-        else
+        else if (attackType == "Overhead" && !isBlockingHigh)
         {
+            //owwie zowie
+            getHit = true;
+            health -= 5;
+            Debug.Log(health);
+        }
+        else if (attackType == "Sweep" && !isBlockingLow)
+        {
+            //owwie zowie
+            getHit = true;
+            health -= 5;
+            Debug.Log(health);
+        }
+        else if (attackType == "Normal" && !(isBlockingHigh || isBlockingLow)) {
             //owwie zowie
             getHit = true;
             health -= 5;

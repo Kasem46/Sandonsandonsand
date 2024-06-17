@@ -84,7 +84,8 @@ public class HitboxManager : MonoBehaviour
             if (collision.collider.gameObject.layer == 10) {
                 
                 if (collision.otherCollider.gameObject.layer == 9) {
-                    hitter.attemptHit();
+                    Debug.Log(collision.collider.gameObject.tag);
+                    hitter.attemptHit(collision.collider.gameObject.tag);
                 }
                 if (collision.otherCollider.gameObject.layer == 10)
                 {
