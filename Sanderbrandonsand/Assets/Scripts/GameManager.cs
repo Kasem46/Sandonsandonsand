@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+
         squrHealth.transform.localScale = new Vector3((float)player1.getHealth()/(50f/3f),0.5f,1);
         squrHealth.transform.position = new Vector3(-5f +(100- (float)player1.getHealth())/(100f/3f), 3.75f, -2f);
         trungHealth.transform.localScale = new Vector3((float)player2.getHealth() / (50f / 3f), 0.5f, 1);
@@ -37,6 +43,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("player 1 wins");
             SceneManager.LoadScene("Player1Win");
-        }
+        }     
+    }
+
+    public static void ExitGame()
+    {
+        Application.Quit();
     }
 }

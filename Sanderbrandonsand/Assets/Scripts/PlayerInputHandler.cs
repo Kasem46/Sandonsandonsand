@@ -57,4 +57,12 @@ public class PlayerInputHandler : MonoBehaviour
             playerController.setAttack(6);
         }
     }
+
+    public void OnExit(CallbackContext context)
+    {
+        if(context.ReadValue<float>() == 1f)
+        {
+            GameManager.ExitGame();
+        }
+    }
 }
