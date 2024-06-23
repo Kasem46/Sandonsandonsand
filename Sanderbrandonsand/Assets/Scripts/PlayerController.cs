@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool getHit = false;
 
+    //pretty particles
+    public ParticleSystem blockParticles;
+    public ParticleSystem hitParticles;
+
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         otherPlayersTrans = otherPlayer.GetComponent<Transform>();
@@ -148,6 +152,7 @@ public class PlayerController : MonoBehaviour
             getHit = true;
             health -= 5;
             Debug.Log(health);
+            hitParticles.Play();
         }
         else if (attackType == "Sweep" && !isBlockingLow)
         {
@@ -155,12 +160,18 @@ public class PlayerController : MonoBehaviour
             getHit = true;
             health -= 5;
             Debug.Log(health);
+            hitParticles.Play();
         }
-        else if (attackType == "Normal" && !(isBlockingHigh || isBlockingLow)) {
+        else if (attackType == "Normal" && !(isBlockingHigh || isBlockingLow))
+        {
             //owwie zowie
             getHit = true;
             health -= 5;
             Debug.Log(health);
+            hitParticles.Play();
+        }
+        else {
+            blockParticles.Play();
         }
     }
 
