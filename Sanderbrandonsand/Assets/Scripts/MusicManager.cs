@@ -27,7 +27,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip song20;
     
 
-    private playlist = new AudioClip[21];
+    private AudioClip[] playlist = new AudioClip[21];
         
 
     // Start is called before the first frame update
