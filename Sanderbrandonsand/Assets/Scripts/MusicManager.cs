@@ -28,6 +28,8 @@ public class MusicManager : MonoBehaviour
     
 
     private AudioClip[] playlist = new AudioClip[21];
+
+    private AudioSource player;
         
 
     // Start is called before the first frame update
@@ -54,11 +56,19 @@ public class MusicManager : MonoBehaviour
         playlist[18] = song18;
         playlist[19] = song19;
         playlist[20] = song20;
+        player = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (player.isPlaying == false) {
+            setNewAudioClip();
+        }
+    }
+
+    public void setNewAudioClip() {
+        player.clip = playlist[Random.Range(0,21)];
+        player.Play();
     }
 }
