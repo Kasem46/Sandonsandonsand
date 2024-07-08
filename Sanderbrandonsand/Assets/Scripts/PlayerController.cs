@@ -63,7 +63,10 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem blockParticles;
     public ParticleSystem hitParticles;
 
+    private AudioSource owie;
+
     void Awake() {
+        owie = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         otherPlayersTrans = otherPlayer.GetComponent<Transform>();
         otherPlayerController = otherPlayer.GetComponent<PlayerController>();
@@ -149,6 +152,7 @@ public class PlayerController : MonoBehaviour
         else if (attackType == "Overhead" && !isBlockingHigh)
         {
             //owwie zowie
+            owie.Play();
             getHit = true;
             health -= 5;
             Debug.Log(health);
@@ -157,6 +161,7 @@ public class PlayerController : MonoBehaviour
         else if (attackType == "Sweep" && !isBlockingLow)
         {
             //owwie zowie
+            owie.Play();
             getHit = true;
             health -= 5;
             Debug.Log(health);
@@ -165,6 +170,7 @@ public class PlayerController : MonoBehaviour
         else if (attackType == "Normal" && !(isBlockingHigh || isBlockingLow))
         {
             //owwie zowie
+            owie.Play();
             getHit = true;
             health -= 5;
             Debug.Log(health);
