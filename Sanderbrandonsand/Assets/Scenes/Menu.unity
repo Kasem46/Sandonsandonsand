@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 366053961}
   - component: {fileID: 366053960}
   m_Layer: 0
-  m_Name: brandon_head (1)
+  m_Name: cred
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
