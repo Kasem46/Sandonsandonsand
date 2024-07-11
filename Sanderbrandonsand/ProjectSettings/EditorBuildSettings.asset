@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Player1Win.unity
     guid: ed5043d5c5f614547b806c092e1da86a
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 343f220b70af14e43b22962d551096aa
+  - enabled: 1
+    path: Assets/Scenes/BackgroundSelect.unity
+    guid: 3f52b282ebbb04a4991114d2efb2c338
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 021bc6ff08465554abb0523cdbccf67b, type: 2}
