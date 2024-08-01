@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: a2ab2ec1481aeff4bbbd2c49574d41ad
+  - enabled: 1
+    path: Assets/Scenes/Easter Eggs.unity
+    guid: 943af9c4956ad3f48a26b7d02c82c7fb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 021bc6ff08465554abb0523cdbccf67b, type: 2}
